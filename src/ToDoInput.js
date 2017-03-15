@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ToDo from './ToDo';
-import { StyleSheet, TextInput, Text, View, Button, ScrollView } from 'react-native';
+import { TextInput, Text, View, Button, ScrollView } from 'react-native';
+import Styles from './styles/style';
 
 class ToDoInput extends Component {
   constructor(props){
@@ -21,25 +22,38 @@ class ToDoInput extends Component {
     this.setState({list});
   }
 
+  editItem = (index, newState) => {
+    let list = this.state.list;
+    list[index] = newState;
+    this.setState({list});
+  }
 
   render() {
     return (
       <View>
+        <Text style={Styles.count} >{this.state.list.length}</Text>
         <Text>To Do List</Text>
           <TextInput 
+            style={Styles.input}
             onChangeText={(value) => this.setState({ current : value })}
             value={this.state.current}
           />
-          <Button title="Submit" onPress={this.updateTodo} />
-          <ScrollView>
-        {
-         this.state.list.map((todo, index) => {
-             return (
-                 <ToDo key={index} del={index} todo={todo} delItem={this.delItem} />
-             );
-         })
-    }
-    </ScrollView>
+        <Button title="+ Add Item" onPress={this.updateTodo} />
+        <ScrollView style={Styles.toDoArea} >
+          {
+          this.state.list.map((todo, index) => {
+            return (
+              <ToDo 
+                key={index} 
+                del={index} 
+                todo={todo} 
+                delItem={this.delItem} 
+                editItem={this.editItem} 
+              />
+            );
+          })
+          }
+        </ScrollView>
       </View>
     );
   }

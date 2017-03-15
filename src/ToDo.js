@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, Text, View, Button } from 'react-native';
+import { TextInput, Text, View, TouchableHighlight } from 'react-native';
 import Styles from './styles/style';
 
 class ToDo extends Component {
@@ -11,11 +11,22 @@ class ToDo extends Component {
     this.props.delItem(this.props.del);
   }
 
+  sendEdit = (event) => {
+    this.props.editItem(this.props.del, event);
+  }
+
   render() {
     return (
         <View style={Styles.item}>
-          <TextInput style={Styles.input}>{this.props.todo}</TextInput>
-          <Button onPress={this.sendPress} title="x" />
+          <TextInput 
+            style={Styles.inputEdit}
+            onChangeText={this.sendEdit}
+          >
+            {this.props.todo}
+          </TextInput>
+          <TouchableHighlight onPress={this.sendPress}>
+            <Text style={Styles.deleteButton}>x</Text>
+          </TouchableHighlight>
         </View>
     );
   }

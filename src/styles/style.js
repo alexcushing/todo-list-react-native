@@ -10,9 +10,30 @@ const Styles = StyleSheet.create({
   },
   item : {
     margin: 10,
+    flexDirection: 'row',
+    flex: 5,
   },
   input : {
-    padding: 2,
+    padding: 3,
+  },
+  inputEdit : {
+      flex: 1,
+    padding: 3,
+  },
+  deleteButton : {
+      color: 'red',
+      fontSize: 25,
+      margin: 5,
+  },
+  count: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
+  toDoArea : {
+      backgroundColor: '#FFF3E0',
+      marginLeft: 3,
+      marginRight: 3,
   },
 });
 

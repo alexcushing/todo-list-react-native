@@ -23,7 +23,7 @@ class ToDo extends Component {
 
   rightAnimate = () => {
     Animated.timing(this.changeSize, {
-        toValue: 200,
+        toValue: 300,
         duration: 75
       }).start();
       setTimeout(() => {
@@ -37,7 +37,7 @@ class ToDo extends Component {
 
   leftAnimate = () => {
     Animated.timing(this.changeSizeOpp, {
-          toValue: 200,
+          toValue: 300,
           duration: 75
         }).start();
     setTimeout(() => {
@@ -73,7 +73,10 @@ class ToDo extends Component {
           >
             {this.props.todo}
           </TextInput>
-          <TouchableHighlight onPress={this.sendPress}>
+          <TouchableHighlight 
+            underlayColor='#ECEFF1' 
+            onPress={this.sendPress}
+          >
             <Text style={Styles.deleteButton}>x</Text>
           </TouchableHighlight>
         </Animated.View>

@@ -3,15 +3,17 @@ import { StyleSheet } from 'react-native';
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     justifyContent: 'flex-start',
     padding: 20,
     paddingTop: 50,
+    marginBottom: 20,
   },
   item : {
-    margin: 10,
+    marginTop: 5,
     flexDirection: 'row',
-    flex: 5,
+    backgroundColor: '#ECEFF1',
+    flex: 1,
   },
   input : {
     padding: 3,
@@ -21,9 +23,11 @@ const Styles = StyleSheet.create({
     padding: 3,
   },
   deleteButton : {
+      fontFamily: 'sans-serif-thin',
       color: 'red',
-      fontSize: 25,
+      fontSize: 22,
       margin: 5,
+      marginRight: 10,
   },
   count: {
     position: 'absolute',
@@ -31,9 +35,8 @@ const Styles = StyleSheet.create({
     right: 0,
   },
   toDoArea : {
-      backgroundColor: '#FFF3E0',
-      marginLeft: 3,
-      marginRight: 3,
+    backgroundColor: '#ECEFF1',
+    marginBottom: 20,
   },
 });
 

@@ -10,13 +10,13 @@ class ToDoInput extends Component {
     }
 
     componentWillMount() {
-      this.animatedValue = new Animated.Value(0);
+      this.animatedValue = new Animated.Value(500);
     }
 
     componentDidMount() {
       Animated.timing(this.animatedValue, {
-        toValue: 1,
-        duration: 100
+        toValue: 0,
+        duration: 500
       }).start()
     }
 
@@ -52,7 +52,7 @@ class ToDoInput extends Component {
   }
 
   render() {
-    const animatedStyle = { opacity: this.animatedValue }
+    const animatedStyle = { padding: this.animatedValue }
     return (
       <Animated.View style={animatedStyle}>
         <Text style={Styles.count} >{this.state.list.length}</Text>

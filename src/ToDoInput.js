@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import ToDo from './ToDo';
-import { TextInput, Text, View, Button, ScrollView } from 'react-native';
+import { TextInput, Alert, Animated, Easing, Text, View, Button, ScrollView } from 'react-native';
 import Styles from './styles/style';
 
 class ToDoInput extends Component {
   constructor(props){
       super(props);
       this.state = {list : [], current : ""};
+    }
+
+    componentWillMount() {
+      this.animatedValue = new Animated.Value(0);
+    }
+
+    componentDidMount() {
+      Animated.timing(this.animatedValue, {
+        toValue: 1,
+        duration: 100
+      }).start()
     }
 
   updateTodo = (e) => {
@@ -17,20 +28,33 @@ class ToDoInput extends Component {
   }
 
   delItem = (del) => {
-    let list = this.state.list;
-    list.splice(del, 1);
-    this.setState({list});
+    const name = this.state.list[del];
+    Alert.alert(
+      'Delete?',
+      'Delete '+name+' from the to do list?',
+      [
+        {text: 'Cancel', onPress: () =>{
+          console.log("cancelled");
+        }},
+        {text: 'OK', onPress: () =>{
+          let list = this.state.list;
+          list.splice(del, 1);
+          this.setState({list});
+        }},
+      ]
+    );
   }
 
-  editItem = (index, newState) => {
+  editItem = (index, newListItem) => {
     let list = this.state.list;
-    list[index] = newState;
+    list[index] = newListItem;
     this.setState({list});
   }
 
   render() {
+    const animatedStyle = { opacity: this.animatedValue }
     return (
-      <View>
+      <Animated.View style={animatedStyle}>
         <Text style={Styles.count} >{this.state.list.length}</Text>
         <Text>To Do List</Text>
           <TextInput 
@@ -54,7 +78,7 @@ class ToDoInput extends Component {
           })
           }
         </ScrollView>
-      </View>
+      </Animated.View>
     );
   }
 }
